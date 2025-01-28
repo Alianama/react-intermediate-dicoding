@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { BiArchiveIn } from "react-icons/bi";
 import { ImHome } from "react-icons/im";
-
 export function Navigation() {
   return (
     <div className="navigation-container">

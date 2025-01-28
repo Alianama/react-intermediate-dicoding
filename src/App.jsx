@@ -13,7 +13,6 @@ function App() {
     <div className="app-container">
       <Header />
       <Navigation />
-
       <main>
         <Routes>
           <Route path="/" element={<NotesList />} />

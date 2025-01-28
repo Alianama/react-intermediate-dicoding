@@ -23,9 +23,7 @@ function NotesDetailWrapper() {
 class NotesDetail extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      notes: getNote(props.id),
-    };
+    this.state = { notes: getNote(props.id) };
     this.handleArchive = this.handleArchive.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleUnarchive = this.handleUnarchive.bind(this);
@@ -50,9 +48,7 @@ class NotesDetail extends Component {
 
   render() {
     const { notes } = this.state;
-    if (!notes) {
-      return <div className="no-data">Data tidak ada.</div>;
-    }
+    if (!notes) return <div className="no-data">Data tidak ada.</div>;
     return (
       <div className="detail-container">
         <div className="detail-item" key={notes.id}>

@@ -18,9 +18,7 @@ export default class NotesItem extends React.Component {
           <div className="item" key={notes.id}>
             {parse(`<h2>${notes.title}</h2>`)}
             <p className="date">{showFormattedDate(notes.createdAt)}</p>
-            {parse(
-              `<p className="body-text" style="display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">${bodyText}</p>`
-            )}
+            {parse(`<p className="body-text">${bodyText}</p>`)}
           </div>
         </Link>
       </div>

@@ -13,10 +13,7 @@ function AddNoteWrapper() {
 class AddNote extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      title: "",
-      body: "",
-    };
+    this.state = { title: "", body: "" };
     this.onTitleInputHandler = this.onTitleInputHandler.bind(this);
     this.onBodyInputHandler = this.onBodyInputHandler.bind(this);
     this.handleSaveNote = this.handleSaveNote.bind(this);
