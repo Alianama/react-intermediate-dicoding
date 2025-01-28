@@ -49,6 +49,7 @@
 }
 
 .item {
+  gap: 10px;
   color: black !important;
   height: 250px;
   padding: 40px;
@@ -86,6 +87,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.empty-notes {
+  display: flex;
+  justify-content: center;
 }
 
 .no-data {
@@ -229,4 +234,11 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.date {
+  font-size: 16px;
+  color: #797979;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }

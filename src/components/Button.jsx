@@ -1,10 +1,11 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 
 class Button extends React.Component {
   render() {
     return (
       <button
-        className={`button-primary ${this.props.className}`}
+        className={"button-primary"}
         onClick={this.props.onClick}
         type={this.props.type}
         title={this.props.title}
@@ -16,7 +17,6 @@ class Button extends React.Component {
 }
 
 Button.propTypes = {
-  className: PropTypes.string,
   onClick: PropTypes.func,
   title: PropTypes.string,
   type: PropTypes.string,

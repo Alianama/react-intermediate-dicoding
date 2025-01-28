@@ -49,7 +49,7 @@ class NotesList extends React.Component {
               <NotesItem key={note.id} notes={note} />
             ))
           ) : (
-            <p>Tidak ada catatan.</p>
+            <p className="empty-notes">Tidak ada catatan.</p>
           )}
         </div>
         <div className="action-button">
