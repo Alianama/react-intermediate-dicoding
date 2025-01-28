@@ -4,26 +4,24 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import NotesList from "../components/NotesList";
 import PropTypes from "prop-types";
 
-function NotesListWrapper() {
+const NotesListWrapper = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const title = searchParams.get("title");
   const notes = getArchivedNotes();
 
-  function changeSearchParams(keyword) {
-    setSearchParams({ title: keyword });
-  }
+  const changeSearchParams = (keyword) => setSearchParams({ title: keyword });
 
   return (
     <NotesList
-      pageName={"Archive Notes"}
+      pageName="Archive Notes"
       onSearch={changeSearchParams}
       activeKeyword={title}
       navigate={navigate}
       notes={notes}
     />
   );
-}
+};
 
 NotesListWrapper.propTypes = {
   navigate: PropTypes.func,
