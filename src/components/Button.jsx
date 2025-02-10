@@ -1,19 +1,16 @@
-import React from "react";
 import PropTypes from "prop-types";
 
-class Button extends React.Component {
-  render() {
-    return (
-      <button
-        className={"button-primary"}
-        onClick={this.props.onClick}
-        type={this.props.type}
-        title={this.props.title}
-      >
-        {this.props.icon}
-      </button>
-    );
-  }
+function Button({ onClick, type, title, icon }) {
+  return (
+    <button
+      className={"button-primary"}
+      onClick={onClick}
+      type={type}
+      title={title}
+    >
+      {icon}
+    </button>
+  );
 }
 
 Button.propTypes = {
