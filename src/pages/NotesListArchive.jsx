@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { getArchivedNotes } from "../utils/local-data";
+import { getArchivedNotes } from "../utils/network-data";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import NotesList from "../components/NotesList";
 import PropTypes from "prop-types";
@@ -10,13 +10,26 @@ const NotesListWrapper = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [title, setTitle] = useState(searchParams.get("title"));
   const [notes, setNotes] = useState([]);
+  const [loading, setLoading] = useState();
   const { locale } = useContext(LocaleContext);
 
   useEffect(() => {
-    const arcvhiveNotes = getArchivedNotes();
-    setNotes(arcvhiveNotes);
+    async function FetchNotes() {
+      setLoading(true);
+      try {
+        const { error, data } = await getArchivedNotes();
+        if (error) {
+          throw new Error("Error Fatch Data");
+        }
+        setNotes(data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    FetchNotes();
   }, []);
-
   useEffect(() => {
     document.title = locale === "id" ? "Arsip Catatan" : "Archive Notes";
   }, [locale]);
@@ -25,16 +38,19 @@ const NotesListWrapper = () => {
     setSearchParams({ title: keyword });
     setTitle(keyword);
   };
-
-  return (
-    <NotesList
-      pageName={locale === "id" ? "Catatan Arsip" : "Archive Notes"}
-      onSearch={changeSearchParams}
-      activeKeyword={title}
-      navigate={navigate}
-      notes={notes}
-    />
-  );
+  if (loading) {
+    return <h1>Loading</h1>;
+  } else {
+    return (
+      <NotesList
+        pageName={locale === "id" ? "Catatan Arsip" : "Archive Notes"}
+        onSearch={changeSearchParams}
+        activeKeyword={title}
+        navigate={navigate}
+        notes={notes}
+      />
+    );
+  }
 };
 
 NotesListWrapper.propTypes = {

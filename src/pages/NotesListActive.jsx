@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { getActiveNotes } from "../utils/local-data";
+import { getActiveNotes } from "../utils/network-data";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import NotesList from "../components/NotesList";
 import PropTypes from "prop-types";
@@ -10,12 +10,27 @@ const NotesListWrapper = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [title, setTitle] = useState(searchParams.get("title"));
   const [notes, setNotes] = useState([]);
+  const [loading, setLoading] = useState(false);
   const { locale } = useContext(LocaleContext);
 
   useEffect(() => {
-    const activeNotes = getActiveNotes();
-    setNotes(activeNotes);
-  }, []);
+    async function fetchNotes() {
+      setLoading(true);
+      try {
+        const { error, data } = await getActiveNotes();
+        if (error) {
+          throw new Error("Error Fetch Data");
+        }
+        setNotes(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchNotes();
+  }, [getActiveNotes]);
 
   useEffect(() => {
     document.title = locale === "id" ? "Catatan Aktif" : "Active Notes";
@@ -26,15 +41,19 @@ const NotesListWrapper = () => {
     setTitle(keyword);
   };
 
-  return (
-    <NotesList
-      pageName={locale === "id" ? "Catatan Aktif" : "Active Notes"}
-      onSearch={changeSearchParams}
-      activeKeyword={title}
-      navigate={navigate}
-      notes={notes}
-    />
-  );
+  if (loading) {
+    return <h1>Loading</h1>;
+  } else {
+    return (
+      <NotesList
+        pageName={locale === "id" ? "Catatan Aktif" : "Active Notes"}
+        onSearch={changeSearchParams}
+        activeKeyword={title}
+        navigate={navigate}
+        notes={notes}
+      />
+    );
+  }
 };
 
 NotesListWrapper.propTypes = {

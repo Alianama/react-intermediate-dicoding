@@ -1,7 +1,8 @@
 import React, { useState, useContext } from "react";
 import Button from "../components/Button";
 import { BsCheckCircle } from "react-icons/bs";
-import { addNote } from "../utils/local-data";
+// import { addNote } from "../utils/local-data";
+import { addNote } from "../utils/network-data";
 import { useNavigate } from "react-router-dom";
 import LocaleContext from "../context/LocaleContext";
 
@@ -19,12 +20,15 @@ function AddNotes() {
     setBody(event.target.innerHTML.trim());
   };
 
-  const handleSaveNote = () => {
+  async function handleSaveNote() {
     const noteTitle = title ? title : "(untitled)";
     const noteBody = body ? body : "(untitled)";
-    addNote({ title: noteTitle, body: noteBody });
-    navigate("/");
-  };
+    const { error } = await addNote({ title: noteTitle, body: noteBody });
+    console.log(error);
+    if (!error) {
+      navigate("/");
+    }
+  }
 
   return (
     <div className="Add-wrapper">

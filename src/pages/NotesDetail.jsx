@@ -11,7 +11,8 @@ import LocaleContext from "../context/LocaleContext";
 
 function NotesDetail() {
   const { id } = useParams();
-  const { notes, handleArchive, handleUnarchive, handleDelete } = useNote(id);
+  const { notes, loading, handleArchive, handleUnarchive, handleDelete } =
+    useNote(id);
   const { locale } = useContext(LocaleContext);
 
   useEffect(() => {
@@ -20,50 +21,53 @@ function NotesDetail() {
     }
   }, [notes]);
 
-  if (!notes)
+  if (loading) {
+    return <h1>Loading</h1>;
+  } else if (!notes) {
     return (
       <div className="no-data">
         {locale === "id" ? "Catatan Tidak Ditemukan" : "Note Not Found"}
       </div>
     );
+  } else {
+    return (
+      <div className="detail-container">
+        <div className="detail-item" key={notes.id}>
+          {parse(`<h2>${notes.title}</h2>`)}
 
-  return (
-    <div className="detail-container">
-      <div className="detail-item" key={notes.id}>
-        {parse(`<h2>${notes.title}</h2>`)}
+          <p>{showFormattedDate(notes.createdAt)}</p>
 
-        <p>{showFormattedDate(notes.createdAt)}</p>
+          {parse(`<p>${notes.body}</p>`)}
 
-        {parse(`<p>${notes.body}</p>`)}
+          <div className="action-button">
+            <div className="action">
+              <Button
+                title={notes.archived ? "Unarchive" : "Archive"}
+                onClick={() =>
+                  notes.archived
+                    ? handleUnarchive(notes.id)
+                    : handleArchive(notes.id)
+                }
+                icon={
+                  notes.archived ? (
+                    <MdUnarchive size={50} />
+                  ) : (
+                    <IoMdArchive size={50} />
+                  )
+                }
+              />
 
-        <div className="action-button">
-          <div className="action">
-            <Button
-              title={notes.archived ? "Unarchive" : "Archive"}
-              onClick={() =>
-                notes.archived
-                  ? handleUnarchive(notes.id)
-                  : handleArchive(notes.id)
-              }
-              icon={
-                notes.archived ? (
-                  <MdUnarchive size={50} />
-                ) : (
-                  <IoMdArchive size={50} />
-                )
-              }
-            />
-
-            <Button
-              title={"Delete"}
-              onClick={() => handleDelete(notes.id)}
-              icon={<RiDeleteBin5Fill size={50} />}
-            />
+              <Button
+                title={"Delete"}
+                onClick={() => handleDelete(notes.id)}
+                icon={<RiDeleteBin5Fill size={50} />}
+              />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default NotesDetail;

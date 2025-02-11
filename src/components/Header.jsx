@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
+import { IoMdLogOut } from "react-icons/io";
 import LocaleContext from "../context/LocaleContext";
 import PropTypes from "prop-types";
 
@@ -23,9 +24,9 @@ function Header({ logout, name }) {
           )}
         </div>
         <h2>{name}</h2>
-        <button className="locale-btn" onClick={logout}>
-          Logout
-        </button>
+        <div onClick={logout}>
+          <IoMdLogOut size={40} />
+        </div>
       </div>
     </div>
   );

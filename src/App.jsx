@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from "react";
-import Header from "./components/header";
+import Header from "./components/Header";
 import NotesList from "./pages/NotesListActive";
 import NotesListArchive from "./pages/NotesListArchive";
 import NotesDetail from "./pages/NotesDetail";
@@ -15,7 +15,7 @@ import { getUserLogged, putAccessToken } from "./utils/network-data";
 function App() {
   const [locale, setLocale] = useState(localStorage.getItem("locale") || "id");
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
-  const [name, setName] = useState("");
+  const [name, setName] = useState(localStorage.getItem("name") || "");
   const [authedUser, setAuthedUser] = useState(
     localStorage.getItem("authedUser") || null
   );
@@ -31,10 +31,10 @@ function App() {
   async function onLoginSuccess({ accessToken }) {
     putAccessToken(accessToken);
     const { data } = await getUserLogged();
-
-    localStorage.setItem("authedUser", JSON.stringify(data));
+    localStorage.setItem("authedUser", data);
     setAuthedUser(data);
-    setName(data.name || "");
+    localStorage.setItem("name", data.name);
+    setName(data.name);
   }
 
   const toggleTheme = () => {
