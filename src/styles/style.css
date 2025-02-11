@@ -260,3 +260,53 @@ body {
   margin-bottom: 10px;
   margin-top: 10px;
 }
+
+.locale-btn {
+  font-size: medium;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: var(--font-color);
+  box-shadow: 4px 4px 0px 0px rgba(20, 20, 20, 1);
+  transition: all 0.3s ease;
+}
+.locale-btn:hover {
+  box-shadow: none;
+  transform: translate(3px, 3px);
+  transition: all 0.3s ease;
+}
+.header-btn-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  gap: 20px;
+}
+
+.theme-btn {
+  transition: transform 0.4s ease-in-out;
+}
+
+.theme-btn:hover {
+  animation: spin 0.4s linear;
+}
+
+.theme-btn:not(:hover) {
+  animation: spin-reverse 0.4s linear 1;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-
-import LocaleContext from "./context/LocaleCotext";
+import { MdDarkMode, MdLightMode } from "react-icons/md";
+import LocaleContext from "../context/LocaleContext";
 
 function Header() {
   const { locale, toggleLocale, theme, toggleTheme } =
@@ -10,12 +10,18 @@ function Header() {
       <div className="title">
         <h1>{locale === "id" ? "Aplikasi Catatan" : "Notes App"}</h1>
       </div>
-      <button className="locale-btn" onClick={toggleLocale}>
-        {locale === "id" ? "English" : "Indonesia"}
-      </button>
-      <button onClick={toggleTheme}>
-        {theme === "light" ? "Dark" : "Light"}
-      </button>
+      <div className="header-btn-wrapper">
+        <button className="locale-btn" onClick={toggleLocale}>
+          {locale === "id" ? "English" : "Indonesia"}
+        </button>
+        <div className="theme-btn " onClick={toggleTheme}>
+          {theme === "light" ? (
+            <MdDarkMode size={40} />
+          ) : (
+            <MdLightMode size={40} />
+          )}
+        </div>
+      </div>
     </div>
   );
 }

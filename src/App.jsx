@@ -7,7 +7,7 @@ import Add from "./pages/AddNotes";
 import NotFound from "./pages/NotFound";
 import { Routes, Route } from "react-router-dom";
 import { Navigation } from "./components/Navigation";
-import LocaleContext from "./components/context/LocaleCotext";
+import LocaleContext from "./context/LocaleContext";
 
 function App() {
   const [locale, setLocale] = useState(localStorage.getItem("locale") || "id");

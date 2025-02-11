@@ -1,25 +1,31 @@
 import { useParams } from "react-router-dom";
-
+import { useContext, useEffect } from "react";
 import { showFormattedDate } from "../utils";
-
 import parse from "html-react-parser";
-
 import Button from "../components/Button";
-
 import { RiDeleteBin5Fill } from "react-icons/ri";
-
 import { IoMdArchive } from "react-icons/io";
-
 import { MdUnarchive } from "react-icons/md";
-
 import useNote from "../hooks/useNotesDetail";
+import LocaleContext from "../context/LocaleContext";
 
 function NotesDetail() {
   const { id } = useParams();
-
   const { notes, handleArchive, handleUnarchive, handleDelete } = useNote(id);
+  const { locale } = useContext(LocaleContext);
 
-  if (!notes) return <div className="no-data">Data tidak ada.</div>;
+  useEffect(() => {
+    if (notes) {
+      document.title = `${notes.title} - Detail`;
+    }
+  }, [notes]);
+
+  if (!notes)
+    return (
+      <div className="no-data">
+        {locale === "id" ? "Catatan Tidak Ditemukan" : "Note Not Found"}
+      </div>
+    );
 
   return (
     <div className="detail-container">

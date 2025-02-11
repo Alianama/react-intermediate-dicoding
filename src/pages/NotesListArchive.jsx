@@ -1,19 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { getArchivedNotes } from "../utils/local-data";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import NotesList from "../components/NotesList";
 import PropTypes from "prop-types";
+import LocaleContext from "../context/LocaleContext";
 
 const NotesListWrapper = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [title, setTitle] = useState(searchParams.get("title"));
   const [notes, setNotes] = useState([]);
+  const { locale } = useContext(LocaleContext);
 
   useEffect(() => {
     const arcvhiveNotes = getArchivedNotes();
     setNotes(arcvhiveNotes);
   }, []);
+
+  useEffect(() => {
+    document.title = locale === "id" ? "Arsip Catatan" : "Archive Notes";
+  }, [locale]);
 
   const changeSearchParams = (keyword) => {
     setSearchParams({ title: keyword });
@@ -22,7 +28,7 @@ const NotesListWrapper = () => {
 
   return (
     <NotesList
-      pageName="Archive Notes"
+      pageName={locale === "id" ? "Catatan Arsip" : "Archive Notes"}
       onSearch={changeSearchParams}
       activeKeyword={title}
       navigate={navigate}

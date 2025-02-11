@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { BiArchiveIn } from "react-icons/bi";
 import { ImHome } from "react-icons/im";
 import { useContext } from "react";
-import LocaleContext from "./context/LocaleCotext";
+import LocaleContext from "../context/LocaleContext";
 export function Navigation() {
   const { locale } = useContext(LocaleContext);
 

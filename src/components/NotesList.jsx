@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import NotesItem from "./NotesItem";
 import Button from "./Button";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import SearchBar from "./SearchBar";
 import PropTypes from "prop-types";
+import LocaleContext from "../context/LocaleContext";
 
 const NotesList = ({ notes, activeKeyword, navigate, onSearch, pageName }) => {
   const [foundNotes, setFoundNotes] = useState([]);
+  const { locale } = useContext(LocaleContext);
 
   useEffect(() => {
     if (notes) {
@@ -41,7 +43,9 @@ const NotesList = ({ notes, activeKeyword, navigate, onSearch, pageName }) => {
         {foundNotes.length > 0 ? (
           foundNotes.map((note) => <NotesItem key={note.id} notes={note} />)
         ) : (
-          <p className="empty-notes">Tidak ada catatan.</p>
+          <p className="empty-notes">
+            {locale === "id" ? "Tidak ada catatan" : "Notes not Found"}
+          </p>
         )}
       </div>
       <div className="action-button">

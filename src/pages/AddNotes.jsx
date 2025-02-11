@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Button from "../components/Button";
 import { BsCheckCircle } from "react-icons/bs";
 import { addNote } from "../utils/local-data";
 import { useNavigate } from "react-router-dom";
+import LocaleContext from "../context/LocaleContext";
 
 function AddNotes() {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+  const { locale } = useContext(LocaleContext);
 
   const onTitleInputHandler = (event) => {
     setTitle(event.target.textContent.trim());

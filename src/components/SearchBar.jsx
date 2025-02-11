@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
+import LocaleContext from "../context/LocaleContext";
 
 function SearchBar({ search, defaultKeyword }) {
   const [keyword, setKeyword] = useState(defaultKeyword || "");
+  const { locale } = useContext(LocaleContext);
 
   const onSubmitSearch = (event) => {
     event.preventDefault();
@@ -19,12 +21,14 @@ function SearchBar({ search, defaultKeyword }) {
       <form className="search-form" onSubmit={onSubmitSearch}>
         <input
           type="text"
-          placeholder="Masukan Judul Notes"
+          placeholder={
+            locale === "id" ? "Cari berdasarkan Judul" : "Search by Title"
+          }
           value={keyword}
           onChange={onChangeSearch}
         />
         <button className="search-submit-button" type="submit">
-          Search
+          {locale === "id" ? "Cari" : "Search"}
         </button>
       </form>
     </div>
