@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import Header from "./components/header";
 import NotesList from "./pages/NotesListActive";
 import NotesListArchive from "./pages/NotesListArchive";
@@ -10,23 +10,35 @@ import { Navigation } from "./components/Navigation";
 import LocaleContext from "./components/context/LocaleCotext";
 
 function App() {
-  const [locale, setLocale] = useState("id");
-  const [theme, setTheme] = useState("white");
+  const [locale, setLocale] = useState(localStorage.getItem("locale") || "id");
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
   const toggleLocale = () => {
     setLocale((prevLocale) => {
-      return prevLocale === "id" ? "en" : "id";
+      const newLocale = prevLocale === "id" ? "en" : "id";
+      localStorage.setItem("locale", newLocale);
+      return newLocale;
     });
   };
 
   const toggleTheme = () => {
-    setTheme((prevLocale) => {
-      return prevLocale === "id" ? "en" : "id";
+    setTheme((prevTheme) => {
+      const newTheme = prevTheme === "light" ? "dark" : "light";
+      localStorage.setItem("theme", newTheme);
+      return newTheme;
     });
   };
 
   const contextValue = useMemo(() => {
     return { locale, toggleLocale, theme, toggleTheme };
   });
+
+  useEffect(() => {
+    const updateTheme = () => {
+      document.documentElement.setAttribute("data-theme", theme);
+    };
+    updateTheme();
+  }, [theme]);
 
   return (
     <LocaleContext.Provider value={contextValue}>

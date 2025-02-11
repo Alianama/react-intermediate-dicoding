@@ -1,9 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 
+:root {
+  --font-color: #ffdc58;
+  --background-color: #fef2e8;
+  --font-color-text: black;
+}
+
+[data-theme="dark"] {
+  --font-color: #eee;
+  --background-color: #333;
+  --font-color-text: #fef2e8;
+}
+
 .main {
-  background-color: #fef2e8;
+  background-color: var(--background-color);
   padding-bottom: 30px;
-  color: black !important;
+  color: black;
+}
+
+body {
+  background-color: var(--background-color);
 }
 
 * {
@@ -23,7 +39,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ffdc58;
+  background-color: var(--font-color);
   box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 1);
   transition: all 0.3s ease;
 }
@@ -37,7 +53,7 @@
 
 .header-container {
   display: flex;
-  background: #ffdc58;
+  background: var(--font-color);
   position: sticky;
   top: 0;
   flex-direction: row;
@@ -50,7 +66,7 @@
 
 .item {
   gap: 10px;
-  color: black !important;
+  color: var(--font-color-text);
   height: 250px;
   padding: 40px;
   text-align: left;
@@ -58,7 +74,7 @@
   box-shadow: 7px 7px 0px 0px rgba(20, 20, 20, 1);
   border: solid 3px black;
   flex-direction: column;
-  background-color: #fef2e8;
+  background-color: var(--background-color);
   border-radius: 8px;
 }
 
@@ -70,7 +86,7 @@
 
 .item-wrapper a {
   text-decoration: none;
-  color: black;
+  color: --font-color-text;
 }
 
 .list-item {
@@ -87,6 +103,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: var(--font-color-text);
 }
 .empty-notes {
   display: flex;
@@ -106,6 +123,7 @@
   flex-direction: column;
   overflow: hidden;
   gap: 20px;
+  color: var(--font-color-text);
 }
 
 .action-button {
@@ -162,7 +180,7 @@
   align-items: center;
   gap: 30px;
   text-decoration: none;
-  background-color: #ffdc58;
+  background-color: var(--font-color);
   font-size: 24px;
   color: black;
   padding: 10px 50px;
@@ -211,7 +229,7 @@
 }
 
 .search-submit-button {
-  background-color: #ffdc58;
+  background-color: var(--font-color);
   border-left: 2px solid black;
   border-right: none;
   border-top: none;
@@ -224,7 +242,7 @@
 }
 
 .search-submit-button:hover {
-  background-color: #e5bd2f;
+  background-color: var(--font-color);
 }
 
 .body-text {
