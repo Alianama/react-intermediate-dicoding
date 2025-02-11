@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import LocaleContext from "../context/LocaleContext";
+import PropTypes from "prop-types";
 
-function Header() {
+function Header({ logout, name }) {
   const { locale, toggleLocale, theme, toggleTheme } =
     useContext(LocaleContext);
   return (
@@ -21,9 +22,18 @@ function Header() {
             <MdLightMode size={40} />
           )}
         </div>
+        <h2>{name}</h2>
+        <button className="locale-btn" onClick={logout}>
+          Logout
+        </button>
       </div>
     </div>
   );
 }
+
+Header.propTypes = {
+  logout: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+};
 
 export default Header;
