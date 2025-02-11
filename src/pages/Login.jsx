@@ -16,20 +16,20 @@ function Login({ loginSuccess }) {
     }
   }
   return (
-    <section>
-      <h2>
-        {locale === "id"
-          ? "Silakan masuk untuk melanjutkan"
-          : "Log in to continue"}
-      </h2>
+    <section className="login-page">
+      <div className="login-wrapper">
+        <h2>
+          {locale === "id" ? "Selamat datang Kembali  !" : "Welcome Back !"}
+        </h2>
 
-      <InputLogin onLogin={onLogin} />
-      <p>
-        {locale === "id" ? "Belum Punya akun?" : "Not Have Account?"}
-        <Link to="/register">
-          {locale === "id" ? "Daftar Disini !" : "Register Here !"}
-        </Link>
-      </p>
+        <InputLogin onLogin={onLogin} />
+        <p>
+          {locale === "id" ? "Belum Punya akun? " : "Not Have Account? "}
+          <Link to="/register">
+            {locale === "id" ? "Daftar Disini!" : "Register Here!"}
+          </Link>
+        </p>
+      </div>
     </section>
   );
 }

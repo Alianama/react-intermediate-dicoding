@@ -63,9 +63,7 @@ function App() {
     return (
       <LocaleContext.Provider value={contextValue}>
         <div className="contact-app">
-          <header className="contact-app__header">
-            <h1>{locale === "id" ? "Aplikasi Kontak" : "Contact App"}</h1>
-          </header>
+          <Header />
           <main>
             <Routes>
               <Route

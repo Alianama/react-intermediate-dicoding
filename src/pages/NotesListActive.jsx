@@ -42,7 +42,11 @@ const NotesListWrapper = () => {
   };
 
   if (loading) {
-    return <h1>Loading</h1>;
+    return (
+      <div className="loading">
+        <h1>Loading..... </h1>
+      </div>
+    );
   } else {
     return (
       <NotesList

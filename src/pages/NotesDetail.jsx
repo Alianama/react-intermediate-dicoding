@@ -22,7 +22,11 @@ function NotesDetail() {
   }, [notes]);
 
   if (loading) {
-    return <h1>Loading</h1>;
+    return (
+      <div className="loading">
+        <h1>Loading..... </h1>
+      </div>
+    );
   } else if (!notes) {
     return (
       <div className="no-data">

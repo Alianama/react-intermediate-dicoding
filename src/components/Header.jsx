@@ -24,17 +24,15 @@ function Header({ logout, name }) {
           )}
         </div>
         <h2>{name}</h2>
-        <div onClick={logout}>
-          <IoMdLogOut size={40} />
-        </div>
+        <div onClick={logout}>{!logout ? "" : <IoMdLogOut size={40} />}</div>
       </div>
     </div>
   );
 }
 
 Header.propTypes = {
-  logout: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired,
+  logout: PropTypes.func,
+  name: PropTypes.string,
 };
 
 export default Header;
