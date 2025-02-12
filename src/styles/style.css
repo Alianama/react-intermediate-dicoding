@@ -345,13 +345,13 @@ body {
 .login-wrapper {
   display: flex;
   flex-direction: column;
-  width: 40%;
+  width: 30%;
   justify-content: center;
   background-color: var(--font-color);
-  padding: 70px;
+  padding: 30px;
   border-radius: 40px;
   align-items: center;
-  gap: 30px;
+  gap: 10px;
 }
 
 .login-btn {

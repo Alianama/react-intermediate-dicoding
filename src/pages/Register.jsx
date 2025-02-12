@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import InputRegister from "../components/InputRegister";
 import { register } from "../utils/network-data";
@@ -15,11 +15,14 @@ function Register() {
       navigate("/");
     }
   }
+  useEffect(() => {
+    document.title = "Register";
+  }, []);
 
   return (
     <section className="login-page">
       <div className="login-wrapper">
-        <h2>{locale === "id" ? "Silahkan Mendaftar!" : "Register Here"}</h2>
+        <h2>{locale === "id" ? "Silahkan Mendaftar!" : "Register Here!"}</h2>
         <InputRegister onRegister={onRegisterHandler} />
         <p>
           {locale === "id" ? "Sudah Punya Akun? " : "Have Account?"}

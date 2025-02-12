@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import InputLogin from "../components/InputLogin";
 import { login } from "../utils/network-data";
 import LocaleContext from "../context/LocaleContext";
@@ -15,6 +15,10 @@ function Login({ loginSuccess }) {
       loginSuccess(data);
     }
   }
+
+  useEffect(() => {
+    document.title = "Login";
+  }, []);
   return (
     <section className="login-page">
       <div className="login-wrapper">

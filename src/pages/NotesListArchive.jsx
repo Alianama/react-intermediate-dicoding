@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { getArchivedNotes } from "../utils/network-data";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import NotesList from "../components/NotesList";
-import PropTypes from "prop-types";
 import LocaleContext from "../context/LocaleContext";
 
 const NotesListWrapper = () => {
@@ -55,14 +54,6 @@ const NotesListWrapper = () => {
       />
     );
   }
-};
-
-NotesListWrapper.propTypes = {
-  navigate: PropTypes.func,
-  searchParams: PropTypes.object,
-  title: PropTypes.string,
-  notes: PropTypes.array,
-  changeSearchParams: PropTypes.func,
 };
 
 export default NotesListWrapper;

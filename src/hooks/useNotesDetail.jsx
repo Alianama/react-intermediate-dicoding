@@ -1,11 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-// import {
-//   getNote,
-//   archiveNote,
-//   deleteNote,
-//   unarchiveNote,
-// } from "../utils/local-data";
 import {
   getNote,
   archiveNote,

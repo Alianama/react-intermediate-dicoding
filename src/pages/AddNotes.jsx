@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import Button from "../components/Button";
 import { BsCheckCircle } from "react-icons/bs";
-// import { addNote } from "../utils/local-data";
 import { addNote } from "../utils/network-data";
 import { useNavigate } from "react-router-dom";
 import LocaleContext from "../context/LocaleContext";
